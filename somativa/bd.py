@@ -16,13 +16,13 @@ class bd:
         self.cursor.execute("SELECT * FROM celulares")
         return self.cursor.fetchall()
 
-    def listafiltro(self, *args):
+    def listafiltro(self, args):
         if len(args) == 1:
             formatado = "marca = " + str(args).replace(",", "").replace("(", "").replace(")", "")
         else:
             formatado = "marca = " + str(args).replace(",", " OR marca = ").replace("(", "").replace(")", "")
 
-        sql = f"SELECT * FROM celulares WHERE {formatado}"
+        sql = f"SELECT marca, modelo, valor FROM celulares WHERE {formatado}"
         self.cursor.execute(sql)
         return self.cursor.fetchall()
 
@@ -43,9 +43,3 @@ class bd:
         self.cursor.executemany(sql, vals)
 
         self.cnx.commit()
-
-
-
-
-
-

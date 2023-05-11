@@ -36,14 +36,17 @@ class scrap:
                 try:
                     nome = self.navegador.find_element('xpath', f"/html/body/div[1]/div[2]/div[1]/div[1]/div/span[1]/div[1]/div[{j}]/div/div/div/div/div[2]/div[1]/h2/a/span")
                     preco = self.navegador.find_element('xpath', f"/html/body/div[1]/div[2]/div[1]/div[1]/div/span[1]/div[1]/div[{j}]/div/div/div/div/div[2]/div[3]/div/div[1]/a/span/span[2]/span[2]")
+                    precocent = self.navegador.find_element('xpath', f"/html/body/div[1]/div[2]/div[1]/div[1]/div/span[1]/div[1]/div[{j}]/div/div/div/div/div[2]/div[3]/div/div[1]/a/span/span[2]/span[3]")
                 except:
                     continue
                 if len(listas[i]) == 10:
                     break
                 else:
-                    formatado = int(preco.text.replace(".", ""))
-                    listas[i][nome.text] = formatado
+                    formatado = float(preco.text.replace(".", "")+"."+precocent.text)
+                    formatado2 = nome.text.replace("Samsung", "").replace("Apple", "").replace("Multilaser", "").replace("Xiaomi", "").replace("Motorola", "").replace("Smartphone", "").replace("Celular", "").strip()
+                    listas[i][formatado2] = formatado
         self.navegador.close()
         self.servico.stop()
         return listas
+
 
