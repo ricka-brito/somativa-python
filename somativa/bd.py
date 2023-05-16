@@ -13,16 +13,17 @@ class bd:
         self.scraper = scrap()
 
     def listatudo(self):
-        self.cursor.execute("SELECT * FROM celulares")
+        self.cursor.execute("SELECT marca, modelo, valor FROM celulares")
         return self.cursor.fetchall()
 
-    def listafiltro(self, args):
+    def listafiltro(self, args, ordem):
+        args = tuple(args)
         if len(args) == 1:
             formatado = "marca = " + str(args).replace(",", "").replace("(", "").replace(")", "")
         else:
             formatado = "marca = " + str(args).replace(",", " OR marca = ").replace("(", "").replace(")", "")
 
-        sql = f"SELECT marca, modelo, valor FROM celulares WHERE {formatado}"
+        sql = f"SELECT marca, modelo, valor FROM celulares WHERE {formatado} ORDER BY valor {ordem}"
         self.cursor.execute(sql)
         return self.cursor.fetchall()
 
