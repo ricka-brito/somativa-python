@@ -35,6 +35,7 @@ class tela:
         self.root.geometry("800x900")
         self.root.configure(background='#bdbcb3')
         self.root.resizable(False, False)
+        self.root.iconbitmap("2742085.ico")
         self.frames()
 
     def frames(self):
@@ -144,6 +145,7 @@ class tela:
         self.new.geometry("300x250")
         self.new.title("Carregando")
         self.new.resizable(False, False)
+        self.new.iconbitmap("2742085.ico")
         self.new.transient(self.root)
         self.new.focus_force()
         self.new.grab_set()
@@ -162,6 +164,7 @@ class tela:
         self.exp = Toplevel(self.root)
         self.exp.geometry("300x250")
         self.exp.resizable(False, False)
+        self.exp.iconbitmap("2742085.ico")
         self.exp.transient(self.root)
         self.exp.focus_force()
         self.exp.grab_set()

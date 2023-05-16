@@ -20,12 +20,15 @@ class bd:
             self.cursor = self.cnx.cursor()
             self.cursor.execute("CREATE DATABASE amazon")
             self.cnx.commit()
+            self.cursor.execute("USE amazon")
+            self.cnx.commit()
+
 
         self.cursor.execute("SHOW TABLES")
-
-        if 'celulares' in self.cursor.fetchall():
-            pass
-        else:
+        try:
+            if 'celulares' in self.cursor.fetchall()[0]:
+                pass
+        except:
             self.cursor.execute("""
             CREATE TABLE `celulares` (
             `idcelulares` int(11) NOT NULL AUTO_INCREMENT,
